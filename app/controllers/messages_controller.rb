@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
+   
   before_action :set_message, only: [:edit, :update, :destroy]
+ 
   
   def edit
   end
@@ -40,9 +42,8 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:name, :body)
   end
   
-  def set_message
+   def set_message
     @message = Message.find(params[:id])
   end
-  
   
 end
