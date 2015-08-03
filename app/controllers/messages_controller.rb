@@ -1,6 +1,22 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:edit, :update, :destroy]
   
+  def edit
+  end
+  
+  def update
+    if @message.update(message_params)
+      redirect_to root_path , notice: "メッセージを編集しました"
+    else
+      render "edit"
+    end
+  end
+  
+  def destroy
+    @message.destroy
+    redirect_to root_path, notice:"メッセージを削除しました"
+  end
+  
   def index
     @messages = Message.all
     @message = Message.new
@@ -18,21 +34,6 @@ class MessagesController < ApplicationController
     end
   end
   
-  def edit
-  end
-  
-  def destroy
-    @message.destroy
-    redirect_to root_path, notice:"メッセージを削除しました"
-  end
-  
-  def update
-    if @message.update(message_params)
-      redirect_to root_path , notice: "メッセージを編集しました"
-    else
-      render "edit"
-    end
-  end
   
   private
   def message_params
