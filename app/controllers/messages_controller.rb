@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:edit, :update]
+  before_action :set_message, only: [:edit, :update, :destroy]
   
   def index
     @messages = Message.all
@@ -21,6 +21,11 @@ class MessagesController < ApplicationController
   def edit
   end
   
+  def destroy
+    @message.destroy
+    redirect_to root_path, notice:"メッセージを削除しました"
+  end
+  
   def update
     if @message.update(message_params)
       redirect_to root_path , notice: "メッセージを編集しました"
@@ -37,5 +42,7 @@ class MessagesController < ApplicationController
   def set_message
     @message = Message.find(params[:id])
   end
+  
+  
 end
 
