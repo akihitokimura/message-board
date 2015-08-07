@@ -1,5 +1,5 @@
 class AddAgeToMessage < ActiveRecord::Migration
   def change
-    add_column :messages, :age, :integaer
+    add_column :messages, :age, :integer
   end
 end
